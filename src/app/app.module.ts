@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 
 import { CatalogModule } from './catalog/catalog.module';
 import { SharedModule } from './shared/shared.module';
+import { SidebarModule } from "./shared/sidebar/sidebar.module";
 
 @NgModule({
   declarations: [
@@ -14,8 +15,9 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     CatalogModule,
-    SharedModule
-  ],
+    SharedModule,
+    SidebarModule
+],
   providers: [],
   bootstrap: [AppComponent]
 })

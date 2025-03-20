@@ -1,0 +1,97 @@
+/* header.component.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.header-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center; /* Center the logo */
+  align-items: center;
+  padding: 15px 30px;
+  background-color: white;
+  position: relative; /* Position relative for absolute positioning of WhatsApp icon */
+}
+
+.logo {
+  height: 100px;
+}
+
+.whatsapp-icon {
+  position: absolute; /* Position absolute to keep WhatsApp on the right */
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.whatsapp {
+  height: 60px;
+  width: auto;
+}
+
+.navigation {
+  background-color: #FFD699;
+  width: 100%;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center; /* Center the items */
+  flex-wrap: wrap;
+  max-width: 1000px; /* Constrain max width to keep items more compact */
+  margin: 0 auto; /* Center the list */
+}
+
+.nav-list li {
+  padding: 0; /* Reduced padding */
+}
+
+.nav-list a {
+  color: black;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 10px 15px; /* Slightly increased padding to match image */
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  display: block;
+  letter-spacing: -0.5px;
+}
+
+/* Updated hover and active styles to match the orange background in the image */
+.nav-list a:hover, .nav-list a.active {
+  background-color: #E69401; /* Bright orange color as shown in the image */
+  color: rgb(255, 255, 255); /* Keep text black for better contrast */
+}
+
+@media (max-width: 768px) {
+  .nav-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .whatsapp-icon {
+    position: static; /* Reset position for mobile */
+    transform: none;
+    margin-top: 10px;
+  }
+
+  .nav-list a {
+    padding: 8px 15px;
+    font-size: 0.85rem;
+  }
+}

@@ -1,0 +1,49 @@
+<!-- sidebar.component.html -->
+<div class="sidebar">
+  <!-- Categories Section -->
+  <div class="sidebar-section">
+    <h3 class="section-title">Categorías</h3>
+    <div class="category-list">
+      <div *ngFor="let category of categories" class="category-item">
+        <div class="category-header" (click)="toggleSubcategories(category)">
+          <span>{{ category.name }}</span>
+          <span class="arrow">›</span>
+        </div>
+        <div class="subcategory-list" [class.show]="category.showSubcategories">
+          <div *ngFor="let subcategory of category.subcategories" class="subcategory-item">
+            <a href="#">{{ subcategory }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Manufacturers Section -->
+  <div class="sidebar-section">
+    <h3 class="section-title">Fabricantes</h3>
+    <div class="manufacturer-list">
+      <div class="manufacturer-item all-manufacturers">
+        <a href="#">Todos los fabricantes</a>
+      </div>
+      <div *ngFor="let manufacturer of manufacturers" class="manufacturer-item">
+        <a href="#">{{ manufacturer }}</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Information Section -->
+  <div class="sidebar-section">
+    <h3 class="section-title">Información</h3>
+    <div class="info-list">
+      <div class="info-item">
+        <a href="#">Contáctenos</a>
+      </div>
+      <div class="info-item">
+        <a href="#">Términos y condiciones</a>
+      </div>
+      <div class="info-item">
+        <a href="#">Sobre Nosotros</a>
+      </div>
+    </div>
+  </div>
+</div>

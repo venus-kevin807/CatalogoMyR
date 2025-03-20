@@ -1,0 +1,44 @@
+/* banner.component.css */
+.banner-container {
+  width: 100%;
+  height: 230px;
+  background-image: url('../../../../public/banner-montacargas.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white overlay */
+}
+
+.logo-overlay {
+  position: relative; /* To appear above the ::before pseudo-element */
+  z-index: 2;
+  text-align: center;
+}
+
+.logo-overlay img {
+  max-width: 300px;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .banner-container {
+    height: 180px;
+  }
+
+  .logo-overlay img {
+    max-width: 250px;
+  }
+}
