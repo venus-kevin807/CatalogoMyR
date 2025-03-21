@@ -1,0 +1,17 @@
+/* Agregar en tu archivo styles.css o app.component.css */
+.main-container {
+  display: flex;
+  flex-direction: row;
+  min-height: calc(100vh - 150px); /* Ajustar según la altura de tu header, banner y footer */
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+app-sidebar {
+  width: 320px; /* Ajustar según el ancho deseado del sidebar */
+  background-color: #ffffff; /* Color similar al de la imagen */
+}

@@ -1,8 +1,11 @@
+// catalog.module.ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
 import { CatalogComponent } from './catalog.component';
 import { ProductListComponent } from './product-list/product-list.component';
-import { SharedModule } from '../shared/shared.module'; // Importamos shared si usa algo de ahí
 
 @NgModule({
   declarations: [
@@ -11,7 +14,8 @@ import { SharedModule } from '../shared/shared.module'; // Importamos shared si 
   ],
   imports: [
     CommonModule,
-    SharedModule
+    RouterModule,
+    FormsModule
   ],
   exports: [
     CatalogComponent

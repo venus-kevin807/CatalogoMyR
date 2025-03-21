@@ -1,0 +1,46 @@
+<div class="catalog-container">
+  <div class="catalog-header">
+    <h2>Catálogo de Repuestos</h2>
+
+    <!-- Mostrar filtros activos -->
+    <div class="active-filters" *ngIf="selectedCategoryId || selectedSubcategory || selectedManufacturerId">
+      <span>Filtros activos:</span>
+      <div class="filter-tags">
+        <div class="filter-tag" *ngIf="selectedCategoryId">
+          Categoría: {{ categoryNames[selectedCategoryId] }}
+        </div>
+        <div class="filter-tag" *ngIf="selectedSubcategory">
+          Subcategoría: {{ selectedSubcategory }}
+        </div>
+        <div class="filter-tag" *ngIf="selectedManufacturerId">
+          Fabricante: {{ manufacturerNames[selectedManufacturerId] }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid de productos -->
+  <div class="products-grid">
+    <div class="product-card" *ngFor="let product of filteredProducts">
+      <div class="product-image">
+        <img [src]="product.image" alt="{{ product.name }}" onerror="this.src=''">
+      </div>
+      <div class="product-info">
+        <h3 class="product-title">{{ product.name }}</h3>
+        <p class="product-price">${{ product.price | number }}</p>
+        <div class="product-category">{{ categoryNames[product.categoryId] }} - {{ product.subcategory }}</div>
+        <div class="product-manufacturer">{{ manufacturerNames[product.manufacturerId] }}</div>
+      </div>
+      <div class="product-actions">
+        <button class="add-to-cart-btn">
+          <i class="fa fa-shopping-cart"></i> Agregar
+        </button>
+      </div>
+    </div>
+
+    <!-- Mensaje cuando no hay productos -->
+    <div class="no-products" *ngIf="filteredProducts.length === 0">
+      <p>No se encontraron productos con los filtros seleccionados.</p>
+    </div>
+  </div>
+</div>
