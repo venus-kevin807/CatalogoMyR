@@ -3,15 +3,31 @@
   <!-- Categories Section -->
   <div class="sidebar-section">
     <h3 class="section-title">Categorías</h3>
-    <div class="category-list">
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="loading-state">
+      <div class="spinner"></div>
+      <p>Cargando categorías...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error" class="error-state">
+      <p>{{ error }}</p>
+      <button class="retry-button" (click)="retryLoading()">Reintentar</button>
+    </div>
+
+    <!-- Categories List -->
+    <div *ngIf="!loading && !error" class="category-list">
       <div *ngFor="let category of categories" class="category-item">
         <div class="category-header" (click)="toggleSubcategories(category)">
           <span>{{ category.name }}</span>
-          <span class="arrow">›</span>
+          <span class="arrow" [class.expanded]="category.showSubcategories">›</span>
         </div>
         <div class="subcategory-list" [class.show]="category.showSubcategories">
           <div *ngFor="let subcategory of category.subcategories" class="subcategory-item">
-            <a href="#">{{ subcategory }}</a>
+            <a (click)="selectSubcategory(category.id, subcategory.id, subcategory.name); $event.preventDefault()" href="#">
+              {{ subcategory.name }}
+            </a>
           </div>
         </div>
       </div>
@@ -23,10 +39,12 @@
     <h3 class="section-title">Fabricantes</h3>
     <div class="manufacturer-list">
       <div class="manufacturer-item all-manufacturers">
-        <a href="#">Todos los fabricantes</a>
+        <a href="#" (click)="clearFilters(); $event.preventDefault()">Todos los fabricantes</a>
       </div>
       <div *ngFor="let manufacturer of manufacturers" class="manufacturer-item">
-        <a href="#">{{ manufacturer.name }}</a>
+        <a href="#" (click)="selectManufacturer(manufacturer.id); $event.preventDefault()">
+          {{ manufacturer.name }}
+        </a>
       </div>
     </div>
   </div>
@@ -36,13 +54,13 @@
     <h3 class="section-title">Información</h3>
     <div class="info-list">
       <div class="info-item">
-        <a href="#">Contáctenos</a>
+        <a routerLink="/contact">Contáctenos</a>
       </div>
       <div class="info-item">
-        <a href="#">Términos y condiciones</a>
+        <a routerLink="/terms">Términos y condiciones</a>
       </div>
       <div class="info-item">
-        <a href="#">Sobre Nosotros</a>
+        <a routerLink="/about">Sobre Nosotros</a>
       </div>
     </div>
   </div>

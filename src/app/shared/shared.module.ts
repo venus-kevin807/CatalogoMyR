@@ -7,7 +7,7 @@ import { PaginationComponent } from './pagination/pagination.component';
 import { RouterModule } from '@angular/router';
 import { BannerComponent } from './banner/banner.component';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http'
 @NgModule({
   declarations: [
     HeaderComponent,
@@ -18,6 +18,7 @@ import { BrowserModule } from '@angular/platform-browser';
   imports: [
     CommonModule,
     BrowserModule,
+    HttpClientModule,
     RouterModule
 /*     RouterModule.forRoot([
       { path: 'toyota', component: AppComponent },

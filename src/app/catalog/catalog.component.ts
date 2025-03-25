@@ -63,14 +63,14 @@ export class CatalogComponent implements OnInit, OnDestroy {
   private loadProducts(): void {
     // Simular carga de productos (en una app real, esto vendría de un servicio)
     this.allProducts = [
-      { id: 1, name: 'Cremallera de dirección', price: 450000, categoryId: 1, subcategory: 'Cremalleras', manufacturerId: 1, image: 'assets/images/products/cremallera.jpg' },
-      { id: 2, name: 'Bomba de dirección', price: 380000, categoryId: 1, subcategory: 'Bombas', manufacturerId: 2, image: 'assets/images/products/bomba-direccion.jpg' },
-      { id: 3, name: 'Filtro de aceite', price: 25000, categoryId: 2, subcategory: 'Aceite', manufacturerId: 1, image: 'assets/images/products/filtro-aceite.jpg' },
-      { id: 4, name: 'Filtro de aire', price: 35000, categoryId: 2, subcategory: 'Aire', manufacturerId: 3, image: 'assets/images/products/filtro-aire.jpg' },
-      { id: 5, name: 'Pastillas de freno', price: 65000, categoryId: 3, subcategory: 'Pastillas', manufacturerId: 1, image: 'assets/images/products/pastillas.jpg' },
-      { id: 6, name: 'Amortiguador delantero', price: 180000, categoryId: 4, subcategory: 'Amortiguadores', manufacturerId: 2, image: 'assets/images/products/amortiguador.jpg' },
-      { id: 7, name: 'Alternador', price: 320000, categoryId: 5, subcategory: 'Alternadores', manufacturerId: 1, image: 'assets/images/products/alternador.jpg' },
-      { id: 8, name: 'Batería de montacargas', price: 550000, categoryId: 5, subcategory: 'Baterías', manufacturerId: 4, image: 'assets/images/products/bateria.jpg' }
+      { id: 1, name: 'Cremallera de dirección', price: 450000, categoryId: 1, subcategory: 'Cremalleras', manufacturerId: 1,/*  image: 'assets/images/products/cremallera.jpg' */ },
+      { id: 2, name: 'Bomba de dirección', price: 380000, categoryId: 1, subcategory: 'Bombas', manufacturerId: 2, /* image: 'assets/images/products/bomba-direccion.jpg' */ },
+      { id: 3, name: 'Filtro de aceite', price: 25000, categoryId: 2, subcategory: 'Aceite', manufacturerId: 1, /* image: 'assets/images/products/filtro-aceite.jpg' */ },
+      { id: 4, name: 'Filtro de aire', price: 35000, categoryId: 2, subcategory: 'Aire', manufacturerId: 3, /* image: 'assets/images/products/filtro-aire.jpg' */ },
+      { id: 5, name: 'Pastillas de freno', price: 65000, categoryId: 3, subcategory: 'Pastillas', manufacturerId: 1, /* image: 'assets/images/products/pastillas.jpg' */ },
+      { id: 6, name: 'Amortiguador delantero', price: 180000, categoryId: 4, subcategory: 'Amortiguadores', manufacturerId: 2, /* image: 'assets/images/products/amortiguador.jpg' */ },
+      { id: 7, name: 'Alternador', price: 320000, categoryId: 5, subcategory: 'Alternadores', manufacturerId: 1, /* image: 'assets/images/products/alternador.jpg' */ },
+      { id: 8, name: 'Batería de montacargas', price: 550000, categoryId: 5, subcategory: 'Baterías', manufacturerId: 4, /* image: 'assets/images/products/bateria.jpg' */ }
     ];
 
     // Inicialmente, mostrar todos los productos
