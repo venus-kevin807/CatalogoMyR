@@ -10,7 +10,15 @@
       </a>
     </div>
   </div>
-  <nav class="navigation">
+
+  <!-- Loading State for Navigation -->
+  <nav *ngIf="navItems.length === 0" class="navigation loading-state">
+    <div class="spinner"></div>
+    <p>Cargando navegación...</p>
+  </nav>
+
+  <!-- Navigation -->
+  <nav *ngIf="navItems.length > 0" class="navigation">
     <ul class="nav-list">
       <li *ngFor="let item of navItems">
         <a [routerLink]="item.link" routerLinkActive="active">{{ item.name }}</a>

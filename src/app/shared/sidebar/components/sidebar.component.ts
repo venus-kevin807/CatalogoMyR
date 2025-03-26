@@ -9,14 +9,7 @@ import { Category, Manufacturer } from './../models/sidebar.model';
 })
 export class SidebarComponent implements OnInit {
   categories: Category[] = [];
-  manufacturers: Manufacturer[] = [
-    { id: 1, name: 'Toyota' },
-    { id: 2, name: 'Mitsubishi' },
-    { id: 3, name: 'Nissan' },
-    { id: 4, name: 'Heli' },
-    { id: 5, name: 'Hangcha' },
-    { id: 6, name: 'Tailift' }
-  ];
+  manufacturers: Manufacturer[] = [];
   loading = true;
   error: string | null = null;
 
@@ -24,6 +17,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCategories();
+    this.loadManufacturers();
   }
 
   loadCategories(): void {
@@ -39,72 +33,20 @@ export class SidebarComponent implements OnInit {
         console.error('Error cargando categorías:', err);
         this.error = 'No se pudieron cargar las categorías. Intente nuevamente más tarde.';
         this.loading = false;
-
-        // Fallback a datos dummy en caso de error
-        this.useDummyData();
       }
     });
   }
 
-  // Cargar datos dummy en caso de que falle la API
-  useDummyData(): void {
-    this.categories = [
-      {
-        id: 1,
-        name: 'Dirección',
-        subcategories: [
-          { id: 1, name: 'Cremalleras', category_id: 1 },
-          { id: 2, name: 'Bombas', category_id: 1 },
-          { id: 3, name: 'Terminales', category_id: 1 },
-          { id: 4, name: 'Barras', category_id: 1 }
-        ],
-        showSubcategories: false
+  loadManufacturers(): void {
+    this.sidebarService.getManufacturers().subscribe({
+      next: (manufacturers) => {
+        this.manufacturers = manufacturers;
       },
-      {
-        id: 2,
-        name: 'Filtros',
-        subcategories: [
-          { id: 5, name: 'Aceite', category_id: 2 },
-          { id: 6, name: 'Aire', category_id: 2 },
-          { id: 7, name: 'Combustible', category_id: 2 },
-          { id: 8, name: 'Hidráulico', category_id: 2 }
-        ],
-        showSubcategories: false
-      },
-      {
-        id: 3,
-        name: 'Frenos',
-        subcategories: [
-          { id: 9, name: 'Pastillas', category_id: 3 },
-          { id: 10, name: 'Discos', category_id: 3 },
-          { id: 11, name: 'Bombas', category_id: 3 },
-          { id: 12, name: 'Zapatas', category_id: 3 }
-        ],
-        showSubcategories: false
-      },
-      {
-        id: 4,
-        name: 'Suspensión',
-        subcategories: [
-          { id: 13, name: 'Amortiguadores', category_id: 4 },
-          { id: 14, name: 'Espirales', category_id: 4 },
-          { id: 15, name: 'Bujes', category_id: 4 },
-          { id: 16, name: 'Bandejas', category_id: 4 }
-        ],
-        showSubcategories: false
-      },
-      {
-        id: 5,
-        name: 'Eléctricos',
-        subcategories: [
-          { id: 17, name: 'Alternadores', category_id: 5 },
-          { id: 18, name: 'Arranques', category_id: 5 },
-          { id: 19, name: 'Fusibles', category_id: 5 },
-          { id: 20, name: 'Baterías', category_id: 5 }
-        ],
-        showSubcategories: false
+      error: (err) => {
+        console.error('Error cargando fabricantes:', err);
+        // Error handling is done in the service with fallback data
       }
-    ];
+    });
   }
 
   // Toggle visibility of subcategories

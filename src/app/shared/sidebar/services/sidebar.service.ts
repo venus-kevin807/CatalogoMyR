@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin, of, throwError } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { CatalogService } from '../../../catalog/services/catalog.service';
-import { Category, Subcategory, CategoriesResponse, SubcategoriesResponse } from '../models/sidebar.model';
+import { Category, Subcategory, CategoriesResponse, SubcategoriesResponse, Manufacturer } from '../models/sidebar.model';
+import { ManufacturersResponse } from '../../models/manufacturer.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,15 @@ export class SidebarService {
     private catalogService: CatalogService
   ) { }
 
+  getManufacturers(): Observable<Manufacturer[]> {
+    return this.http.get<ManufacturersResponse>(`${this.apiUrl}/manufactures.php`).pipe(
+      map(response => response.manufacturers),
+      catchError(error => {
+        console.error('Error fetching manufacturers:', error);
+        return throwError(() => new Error('Error fetching manufacturers'));
+      })
+    );
+  }
   /**
    * Obtiene todas las categorías con sus subcategorías
    */

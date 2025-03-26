@@ -4,6 +4,17 @@
   font-family: 'Roboto', sans-serif;
 }
 
+.retry-button {
+  margin-left: auto;
+  background-color: #e0a050;
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
 .sidebar {
   width: 280px;
   min-width: 280px;

@@ -37,7 +37,14 @@
   <!-- Manufacturers Section -->
   <div class="sidebar-section">
     <h3 class="section-title">Fabricantes</h3>
-    <div class="manufacturer-list">
+
+    <!-- Loading State for Manufacturers -->
+    <div *ngIf="manufacturers.length === 0" class="loading-state">
+      <div class="spinner"></div>
+      <p>Cargando fabricantes...</p>
+    </div>
+
+    <div *ngIf="manufacturers.length > 0" class="manufacturer-list">
       <div class="manufacturer-item all-manufacturers">
         <a href="#" (click)="clearFilters(); $event.preventDefault()">Todos los fabricantes</a>
       </div>
