@@ -5,6 +5,7 @@ export interface Category {
   subcategories: Subcategory[];
   showSubcategories: boolean;
   description?: string;
+  isManufacturerSpecific?: boolean;
 }
 
 export interface Subcategory {

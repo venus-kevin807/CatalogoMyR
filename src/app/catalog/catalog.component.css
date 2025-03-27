@@ -3,7 +3,57 @@
 * {
   font-family: 'Roboto', sans-serif;
 }
+.active-filters {
+  display: flex;
+  align-items: center;
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  gap: 10px;
+}
 
+.clear-filters-btn {
+  background-color: transparent;
+  color: #666;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  order: 1; /* Lo coloca primero */
+}
+
+.clear-filters-btn:hover {
+  color: #333;
+  text-decoration: underline;
+}
+
+.clear-filters-btn i {
+  font-size: 12px;
+}
+
+.filters-label {
+  font-weight: bold;
+  order: 2; /* Lo coloca segundo */
+}
+
+.filter-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  order: 3; /* Lo coloca tercero */
+}
+
+.filter-tag {
+  background-color: #ffbf66;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+}
 
 .catalog-container {
   padding: 20px;

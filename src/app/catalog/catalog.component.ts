@@ -3,6 +3,7 @@ import { CatalogService } from './services/catalog.service';
 import { SidebarService } from '../shared/sidebar/services/sidebar.service';
 import { Subscription, combineLatest } from 'rxjs';
 import { Manufacturer } from '../shared/models/manufacturer.model';
+import { Category } from '../shared/sidebar/models/sidebar.model';
 
 @Component({
   selector: 'app-catalog',
@@ -14,13 +15,8 @@ export class CatalogComponent implements OnInit, OnDestroy {
   selectedSubcategory: string | null = null;
   selectedManufacturerId: number | null = null;
 
-  categoryNames: { [key: number]: string } = {
-    1: 'Dirección',
-    2: 'Filtros',
-    3: 'Frenos',
-    4: 'Suspensión',
-    5: 'Eléctricos'
-  };
+  categories: Category[] = [];
+  categoryNames: { [key: number]: string } = {};
 
   manufacturerNames: { [key: number]: string } = {};
   manufacturers: Manufacturer[] = [];
@@ -36,7 +32,10 @@ export class CatalogComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // Load manufacturers first
+    // Load categories first
+    this.loadCategories();
+
+    // Then load manufacturers
     this.loadManufacturers();
 
     // Load products
@@ -62,6 +61,18 @@ export class CatalogComponent implements OnInit, OnDestroy {
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
+  private loadCategories(): void {
+    this.sidebarService.getCategories().subscribe(categories => {
+      this.categories = categories;
+
+      // Create a mapping of category IDs to names
+      this.categoryNames = categories.reduce((acc: { [key: number]: string }, category) => {
+        acc[category.id] = category.name;
+        return acc;
+      }, {});
+    });
+  }
+
   private loadManufacturers(): void {
     this.sidebarService.getManufacturers().subscribe(manufacturers => {
       this.manufacturers = manufacturers;
@@ -73,6 +84,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
       }, {});
     });
   }
+
 
   private loadProducts(): void {
     // Simulate product loading (in a real app, this would come from a service)
@@ -123,4 +135,9 @@ export class CatalogComponent implements OnInit, OnDestroy {
     // Implement logic to add to favorites
     console.log(`Product ${productId} added to favorites`);
   }
+
+// En tu catalog.component.ts
+clearFilters(): void {
+  this.catalogService.clearFilters();
+}
 }

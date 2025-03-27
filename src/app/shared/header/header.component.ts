@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SidebarService } from '../sidebar/services/sidebar.service';
 import { Manufacturer } from '../models/manufacturer.model';
 
@@ -8,16 +9,39 @@ import { Manufacturer } from '../models/manufacturer.model';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  navItems: { name: string; link: string }[] = [];
+  manufacturers: Manufacturer[] = [];
+  selectedManufacturer: Manufacturer | null = null;
 
-  constructor(private sidebarService: SidebarService) {}
+  constructor(
+    private sidebarService: SidebarService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.sidebarService.getManufacturers().subscribe(manufacturers => {
-      this.navItems = manufacturers.map(manufacturer => ({
-        name: manufacturer.name.toUpperCase(),
-        link: `/${manufacturer.name.toLowerCase().replace(/\s+/g, '-')}`
-      }));
+    this.loadManufacturers();
+  }
+
+  loadManufacturers(): void {
+    this.sidebarService.getManufacturers().subscribe({
+      next: (manufacturers) => {
+        this.manufacturers = manufacturers;
+      },
+      error: (err) => {
+        console.error('Error loading manufacturers:', err);
+      }
     });
   }
+
+  selectManufacturer(manufacturer: Manufacturer): void {
+    // Navigate to catalog
+    this.router.navigate(['/catalog']);
+
+    // Select manufacturer in sidebar service
+    this.sidebarService.selectManufacturer(manufacturer.id);
+
+    // Update selected manufacturer
+    this.selectedManufacturer = manufacturer;
+  }
+
+
 }

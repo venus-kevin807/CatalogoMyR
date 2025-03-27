@@ -4,6 +4,9 @@
 
     <!-- Mostrar filtros activos -->
     <div class="active-filters" *ngIf="selectedCategoryId || selectedSubcategory || selectedManufacturerId">
+      <button class="clear-filters-btn" (click)="clearFilters()">
+        Limpiar filtros
+      </button>
       <span>Filtros activos:</span>
       <div class="filter-tags">
         <div class="filter-tag" *ngIf="selectedCategoryId">
@@ -33,7 +36,7 @@
       </div>
       <div class="product-actions">
         <button class="add-to-cart-btn">
-          <i class="fa fa-shopping-cart"></i> Agregar
+          <i class="fa-solid fa-cart-shopping"></i> Agregar
         </button>
       </div>
     </div>
@@ -42,5 +45,6 @@
     <div class="no-products" *ngIf="filteredProducts.length === 0">
       <p>No se encontraron productos con los filtros seleccionados.</p>
     </div>
+
   </div>
 </div>

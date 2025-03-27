@@ -5,6 +5,45 @@
   font-family: 'Roboto', sans-serif;
 }
 
+.navigation .nav-list a {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.navigation .nav-list a:hover {
+  color: whitesmoke;
+}
+
+.navigation .nav-list a.active {
+  font-weight: bold;
+  color: whitesmoke;
+  border-bottom: 2px solid whitesmoke;
+}
+
+.manufacturer-selection-banner {
+  background-color: #f4f4f4;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.clear-selection-btn {
+  background-color: #E69401;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.clear-selection-btn:hover {
+  background-color: #E69401;
+}
+
 .header-container {
   width: 100%;
   display: flex;
