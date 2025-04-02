@@ -22,7 +22,7 @@
   </div>
 
   <div class="products-grid">
-    <div class="product-card" *ngFor="let product of products">
+    <div class="product-card" *ngFor="let product of products" [routerLink]="['/product', product.id_repuesto]" style="cursor: pointer;">
       <div class="product-image">
         <img [src]="product.imagen_url" [alt]="product.nombre" >
 
