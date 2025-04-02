@@ -1,1 +1,43 @@
-<p>pagination works!</p>
+<div class="pagination-container">
+  <button
+    class="pagination-btn prev-btn"
+    [disabled]="currentPage === 1"
+    (click)="onPageChange(currentPage - 1)">
+    <span>← Previous</span>
+  </button>
+
+  <div class="page-numbers">
+    <button
+      *ngIf="currentPage > 2"
+      class="pagination-btn page-number"
+      (click)="onPageChange(1)">
+      1
+    </button>
+
+    <span *ngIf="currentPage > 3" class="ellipsis">...</span>
+
+    <button
+      *ngFor="let page of visiblePageNumbers"
+      class="pagination-btn page-number"
+      [class.active]="page === currentPage"
+      (click)="onPageChange(page)">
+      {{ page }}
+    </button>
+
+    <span *ngIf="currentPage < totalPages - 2" class="ellipsis">...</span>
+
+    <button
+      *ngIf="currentPage < totalPages - 1 && totalPages > 1"
+      class="pagination-btn page-number"
+      (click)="onPageChange(totalPages)">
+      {{ totalPages }}
+    </button>
+  </div>
+
+  <button
+    class="pagination-btn next-btn"
+    [disabled]="currentPage === totalPages"
+    (click)="onPageChange(currentPage + 1)">
+    <span>Next →</span>
+  </button>
+</div>

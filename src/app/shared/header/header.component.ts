@@ -9,6 +9,7 @@ import { Manufacturer } from '../models/manufacturer.model';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  isSidebarOpen = false;
   manufacturers: Manufacturer[] = [];
   selectedManufacturer: Manufacturer | null = null;
 

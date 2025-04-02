@@ -98,7 +98,7 @@ export class SidebarService {
    */
   selectSubcategory(categoryId: number, subcategoryId: number, subcategoryName: string): void {
     this.catalogService.setSelectedCategory(categoryId);
-    this.catalogService.setSelectedSubcategory(subcategoryName);
+    this.catalogService.setSelectedSubcategoryId(subcategoryId);
 
     // También puedes almacenar el ID de la subcategoría si necesitas usarlo
     // Por ejemplo, podrías crear un nuevo método en catalogService:

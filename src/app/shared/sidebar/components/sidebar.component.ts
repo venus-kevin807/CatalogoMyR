@@ -20,6 +20,12 @@ export class SidebarComponent implements OnInit {
     this.loadManufacturers();
   }
 
+  isSidebarOpen = false;
+
+  toggleSidebar(): void {
+    this.isSidebarOpen = !this.isSidebarOpen;
+  }
+
   loadCategories(): void {
     this.loading = true;
     this.error = null;

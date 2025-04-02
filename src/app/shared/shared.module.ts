@@ -20,19 +20,6 @@ import { HttpClientModule } from '@angular/common/http'
     BrowserModule,
     HttpClientModule,
     RouterModule
-/*     RouterModule.forRoot([
-      { path: 'toyota', component: AppComponent },
-      { path: 'mitsubishi-caterpillar', component: AppComponent },
-      { path: 'heli', component: AppComponent },
-      { path: 'hangcha', component: AppComponent },
-      { path: 'nissan', component: AppComponent },
-      { path: 'tailift', component: AppComponent },
-      { path: 'impco', component: AppComponent },
-      { path: 'cascade', component: AppComponent },
-      { path: 'yale', component: AppComponent },
-      { path: 'maximal', component: AppComponent },
-      { path: '', redirectTo: '/', pathMatch: 'full' }
-    ]) */
   ],
   exports: [
     HeaderComponent,

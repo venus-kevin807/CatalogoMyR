@@ -8,9 +8,12 @@ export class CatalogService {
   private selectedCategorySubject = new BehaviorSubject<number | null>(null);
   selectedCategory$: Observable<number | null> = this.selectedCategorySubject.asObservable();
 
-  private selectedSubcategorySubject = new BehaviorSubject<string | null>(null);
-  selectedSubcategory$: Observable<string | null> = this.selectedSubcategorySubject.asObservable();
+  private selectedSubcategoryIdSubject = new BehaviorSubject<number | null>(null);
+  selectedSubcategoryId$: Observable<number | null> = this.selectedSubcategoryIdSubject.asObservable();
 
+  setSelectedSubcategoryId(subcategoryId: number | null): void {
+    this.selectedSubcategoryIdSubject.next(subcategoryId);
+  }
   private selectedManufacturerSubject = new BehaviorSubject<number | null>(null);
   selectedManufacturer$: Observable<number | null> = this.selectedManufacturerSubject.asObservable();
 
@@ -20,9 +23,6 @@ export class CatalogService {
     this.selectedCategorySubject.next(categoryId);
   }
 
-  setSelectedSubcategory(subcategory: string | null): void {
-    this.selectedSubcategorySubject.next(subcategory);
-  }
 
   setSelectedManufacturer(manufacturerId: number | null): void {
     this.selectedManufacturerSubject.next(manufacturerId);
@@ -30,7 +30,7 @@ export class CatalogService {
 
   clearFilters(): void {
     this.selectedCategorySubject.next(null);
-    this.selectedSubcategorySubject.next(null);
+    this.selectedSubcategoryIdSubject.next(null);
     this.selectedManufacturerSubject.next(null);
   }
 }

@@ -24,8 +24,9 @@
   <div class="products-grid">
     <div class="product-card" *ngFor="let product of products">
       <div class="product-image">
-        <img [src]="product.imagen_url" [alt]="product.nombre" >
-
+        <img [src]="product.imagen_url"
+             [alt]="product.nombre"
+             (error)="handleImageError(product)">
       </div>
       <div class="product-info">
         <h3 class="product-title">{{ product.nombre }}</h3>
@@ -52,9 +53,7 @@
 
     <div class="no-products" *ngIf="products.length === 0">
       <p>No se encontraron productos con los filtros seleccionados.</p>
-      <button class="show-all-btn" (click)="clearFilters()">
-        <i class="fas fa-sync-alt"></i> Mostrar todos los productos
-      </button>
+      <button (click)="clearFilters()">Mostrar todos los productos</button>
     </div>
 
     <app-pagination
