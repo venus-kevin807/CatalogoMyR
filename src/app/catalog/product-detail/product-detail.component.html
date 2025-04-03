@@ -1,77 +1,78 @@
-<div class="product-detail-container" *ngIf="!loading && product">
-  <div class="product-detail-grid">
-    <!-- Columna izquierda: Imagen del producto -->
-    <div class="product-image-container">
-      <img [src]="product.imagen_url" [alt]="product.nombre" class="product-detail-image">
-      <button class="favorite-btn">
-        <i class="far fa-heart"></i>
-      </button>
-    </div>
-
-    <!-- Columna derecha: Información del producto -->
-    <div class="product-info-container">
-      <h1 class="product-title">{{ product.nombre }}</h1>
-
-      <div class="product-status">
-        <span class="product-status-badge new">Nuevo</span>
+  <div class="product-detail-container" *ngIf="!loading && product">
+    <div class="product-detail-grid">
+      <!-- Columna izquierda: Imagen del producto -->
+      <div class="product-image-container">
+        <img [src]="product.imagen_url" [alt]="product.nombre" class="product-detail-image">
       </div>
 
-      <div class="product-price">
-        <span class="currency">$</span>
-        <span class="amount">{{ product.precio | number }}</span>
-      </div>
+      <!-- Columna derecha: Información del producto -->
+      <div class="product-info-container">
+        <h1 class="product-title">{{ product.nombre }}</h1>
 
-      <div class="product-reference">
-        <p>Referencia: {{ product.str_referencia }}</p>
-      </div>
+        <div class="product-status">
+          <span class="product-status-badge new">Nuevo</span>
+        </div>
 
-      <div class="product-actions">
-        <a href="https://wa.me/3176465312" target="_blank" style="text-decoration: none; color: white;">
-        <button class="btn-cotizar" [disabled]="product.stock <= 0">
-          <i class="fab fa-whatsapp"></i> COTIZA YA
-        </button>
-        </a>
-      </div>
+        <div class="product-price">
+          <span class="currency">$</span>
+          <span class="amount">{{ product.precio | number }}</span>
+        </div>
 
-      <div class="product-description">
-        <h3 class="section-title" (click)="toggleDescription()">
-          Descripción
-        </h3>
-        <div class="description-content">
-          <p>{{ product.descripcion || 'No hay descripción disponible para este producto.' }}</p>
+        <div class="product-reference">
+          <p>Referencia: {{ product.str_referencia }}</p>
+        </div>
+
+        <div class="product-actions">
+          <a [href]="getWhatsAppLink()" target="_blank" style="text-decoration: none; color: white;">
+            <button class="btn-cotizar" [disabled]="product.stock <= 0">
+              <i class="fab fa-whatsapp"></i> COMPRAR AHORA
+            </button>
+          </a>
+
+          <button class="btn-add-to-cart" [disabled]="product.stock <= 0" (click)="addToCart()">
+            <i class="fas fa-shopping-cart"></i> AGREGAR AL CARRITO
+          </button>
+        </div>
+
+        <div class="product-description">
+          <h3 class="section-title" (click)="toggleDescription()">
+            Descripción
+          </h3>
+          <div class="description-content">
+            <p>{{ product.descripcion || 'No hay descripción disponible para este producto.' }}</p>
+          </div>
         </div>
       </div>
     </div>
+
+    <!-- Ficha técnica -->
+    <div class="technical-details">
+      <h2 class="section-title">FICHA TÉCNICA</h2>
+      <table class="specs-table">
+        <tr>
+          <th>MARCA</th>
+          <td>{{ product.fabricante_nombre }}</td>
+        </tr>
+        <tr *ngIf="product.str_referencia">
+          <th>REFERENCIA</th>
+          <td>{{ product.str_referencia }}</td>
+        </tr>
+        <tr *ngIf="product.categoria_nombre">
+          <th>CATEGORÍA</th>
+          <td>{{ product.categoria_nombre }}</td>
+        </tr>
+      </table>
+    </div>
   </div>
 
-  <!-- Ficha técnica -->
-  <div class="technical-details">
-    <h2 class="section-title">FICHA TÉCNICA</h2>
-    <table class="specs-table">
-      <tr>
-        <th>MARCA</th>
-        <td>{{ product.fabricante_nombre }}</td>
-      </tr>
-      <tr *ngIf="product.str_referencia">
-        <th>REFERENCIA</th>
-        <td>{{ product.str_referencia }}</td>
-      </tr>
-      <tr *ngIf="product.categoria_nombre">
-        <th>CATEGORÍA</th>
-        <td>{{ product.categoria_nombre }}</td>
-      </tr>
-    </table>
+  <!-- Estado de carga -->
+  <div class="loading-container" *ngIf="loading">
+    <div class="spinner"></div>
+    <p>Cargando detalles del producto...</p>
   </div>
-</div>
 
-<!-- Estado de carga -->
-<div class="loading-container" *ngIf="loading">
-  <div class="spinner"></div>
-  <p>Cargando detalles del producto...</p>
-</div>
-
-<!-- Estado de error -->
-<div class="error-container" *ngIf="!loading && error">
-  <p class="error-message">{{ error }}</p>
-  <button class="btn-primary" routerLink="/catalog">Volver al catálogo</button>
-</div>
+  <!-- Estado de error -->
+  <div class="error-container" *ngIf="!loading && error">
+    <p class="error-message">{{ error }}</p>
+    <button class="btn-primary" routerLink="/catalog">Volver al catálogo</button>
+  </div>

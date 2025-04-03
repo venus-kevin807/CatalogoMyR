@@ -22,8 +22,8 @@
   </div>
 
   <div class="products-grid">
-    <div class="product-card" *ngFor="let product of products" [routerLink]="['/product', product.id_repuesto]" style="cursor: pointer;">
-      <div class="product-image">
+    <div class="product-card" *ngFor="let product of products" >
+      <div class="product-image" [routerLink]="['/product', product.id_repuesto]" style="cursor: pointer;">
         <img [src]="product.imagen_url" [alt]="product.nombre" >
 
       </div>
@@ -44,9 +44,9 @@
         </div>
       </div>
       <div class="product-actions">
-        <button class="add-to-cart-btn" [disabled]="product.stock <= 0">
-           Agregar al carrito
-        </button>
+        <button class="add-to-cart-btn" [disabled]="product.stock <= 0" (click)="addToCart(product)">
+          Agregar al carrito
+       </button>
       </div>
     </div>
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, forkJoin, of, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, forkJoin, of, throwError } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { CatalogService } from '../../../catalog/services/catalog.service';
 import { Category, Subcategory, CategoriesResponse, SubcategoriesResponse, Manufacturer } from '../models/sidebar.model';
@@ -108,7 +108,17 @@ export class SidebarService {
   /**
    * Selecciona un fabricante para filtrar el catálogo
    */
-  selectManufacturer(manufacturerId: number): void {
+  private filtersCleared = new BehaviorSubject<boolean>(false);
+  filtersCleared$ = this.filtersCleared.asObservable();
+
+  notifyFiltersClear(): void {
+    this.filtersCleared.next(true);
+    // Reset después de un corto tiempo
+    setTimeout(() => {
+      this.filtersCleared.next(false);
+    }, 100);
+  }
+  selectManufacturer(manufacturerId: number | null): void {
     this.catalogService.setSelectedManufacturer(manufacturerId);
   }
 

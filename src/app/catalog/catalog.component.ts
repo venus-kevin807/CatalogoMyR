@@ -6,6 +6,7 @@ import { Manufacturer } from '../shared/models/manufacturer.model';
 import { Category } from '../shared/sidebar/models/sidebar.model';
 import { Product } from '../shared/models/product.model';
 import { ProductService } from './services/product.service';
+import { CartService } from './services/cart.service';
 
 @Component({
   selector: 'app-catalog',
@@ -34,7 +35,8 @@ export class CatalogComponent implements OnInit, OnDestroy {
   constructor(
     private productService: ProductService,
     private catalogService: CatalogService,
-    private sidebarService: SidebarService
+    private sidebarService: SidebarService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -84,6 +86,13 @@ export class CatalogComponent implements OnInit, OnDestroy {
       this.loadSubcategoryNames();
     });
 
+  }
+
+  addToCart(product: Product): void {
+    if (product.stock > 0) {
+      this.cartService.addToCart(product);
+      // La notificación ahora la maneja el servicio con Toastr
+    }
   }
 
 
@@ -198,6 +207,9 @@ export class CatalogComponent implements OnInit, OnDestroy {
 
     // Notificar a los servicios que los filtros se han limpiado
     this.catalogService.clearFilters();
+
+    // Añadir esta línea para notificar al SidebarService
+    this.sidebarService.notifyFiltersClear();
 
     // Volver a cargar todos los productos
     this.loadInitialProducts();

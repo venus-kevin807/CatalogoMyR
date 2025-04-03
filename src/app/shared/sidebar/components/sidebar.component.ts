@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarService } from './../services/sidebar.service';
 import { Category, Manufacturer } from './../models/sidebar.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,6 +13,8 @@ export class SidebarComponent implements OnInit {
   manufacturers: Manufacturer[] = [];
   loading = true;
   error: string | null = null;
+  isSidebarOpen = false;
+  isTermsModalOpen = false;
 
   constructor(private sidebarService: SidebarService) { }
 
@@ -20,7 +23,15 @@ export class SidebarComponent implements OnInit {
     this.loadManufacturers();
   }
 
-  isSidebarOpen = false;
+  openTermsModal(event: Event): void {
+    event.preventDefault();
+    this.isTermsModalOpen = true;
+  }
+
+  // Método para cerrar modal
+  closeTermsModal(): void {
+    this.isTermsModalOpen = false;
+  }
 
   toggleSidebar(): void {
     this.isSidebarOpen = !this.isSidebarOpen;

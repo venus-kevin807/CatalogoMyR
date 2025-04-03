@@ -1,0 +1,74 @@
+<!-- terms-modal.component.html -->
+<div class="modal-overlay" [class.show]="isOpen" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>TÉRMINOS Y CONDICIONES DE USO</h2>
+      <button class="close-button" (click)="onClose()">×</button>
+    </div>
+    <div class="modal-body">
+      <h3>MONTACARGAS Y REPUESTOS S.A.S</h3>
+      <p>Bienvenido/a al <strong>Catálogo Digital de Montacargas y Repuestos S.A.S</strong>, una plataforma en línea que ofrece catálogos de productos relacionados con montacargas, repuestos y servicios asociados. Al acceder y utilizar esta aplicación web, usted acepta cumplir con los siguientes términos y condiciones ("Términos"). Si no está de acuerdo con estos Términos, absténgase de utilizar nuestro servicio.</p>
+
+      <h4>1. Definiciones</h4>
+      <ul>
+        <li><strong>"Aplicación"</strong>: Refiere al sitio web y servicios ofrecidos por <strong>Montacargas y Repuestos S.A.S</strong>.</li>
+        <li><strong>"Usuario"</strong>: Cualquier persona o entidad que acceda o utilice la Aplicación.</li>
+        <li><strong>"Catálogo"</strong>: Colección de productos (montacargas, repuestos y accesorios) exhibidos en la Aplicación.</li>
+        <li><strong>"Proveedor"</strong>: Empresa o vendedor que publica productos en la Aplicación (incluyendo a Montacargas y Repuestos S.A.S y sus socios comerciales).</li>
+      </ul>
+
+      <h4>2. Uso de la Aplicación</h4>
+      <p>2.1. La Aplicación permite a los Usuarios explorar catálogos de productos, comparar características técnicas, ver disponibilidad y contactar a la empresa para solicitudes de cotización o compra.</p>
+      <p>2.2. Usted se compromete a utilizar la Aplicación de manera legal y ética, sin fines fraudulentos o que infrinjan derechos de terceros.</p>
+      <p>2.3. <strong>No está permitido</strong>:</p>
+      <ul>
+        <li>Copiar, distribuir o modificar contenido sin autorización expresa.</li>
+        <li>Utilizar bots, scrapers o métodos automatizados para extraer datos.</li>
+        <li>Publicar información falsa, engañosa o ilegal.</li>
+      </ul>
+
+      <h4>4. Privacidad y Protección de Datos</h4>
+      <p>4.1. El tratamiento de datos personales se rige por nuestra <strong>Política de Privacidad</strong>, disponible en [enlace], y cumple con la <strong>Ley 1581 de 2012</strong> (Protección de Datos Personales) de Colombia.</p>
+      <p>4.2. Utilizamos cookies para mejorar la experiencia del usuario. Puede gestionar su configuración en su navegador.</p>
+
+      <h4>5. Contenido y Propiedad Intelectual</h4>
+      <p>5.1. Los catálogos, imágenes, manuales técnicos y descripciones de productos son propiedad de <strong>Montacargas y Repuestos S.A.S</strong> o de sus Proveedores asociados.</p>
+      <p>5.2. Queda prohibida la reproducción, distribución o uso comercial no autorizado del contenido.</p>
+
+      <h4>6. Transacciones y Responsabilidad</h4>
+      <p>6.1. <strong>Montacargas y Repuestos S.A.S</strong> actúa como intermediario entre Usuarios y Proveedores, pero:</p>
+      <ul>
+        <li>No garantiza la disponibilidad inmediata de los productos.</li>
+        <li>Los precios y especificaciones están sujetos a cambios sin previo aviso.</li>
+      </ul>
+      <p>6.2. Las compras o solicitudes de servicio deben gestionarse directamente con la empresa, sujetas a contratos o condiciones comerciales adicionales.</p>
+
+      <h4>7. Modificaciones y Terminación</h4>
+      <p>7.1. Podemos actualizar estos Términos en cualquier momento. Los cambios se notificarán mediante la aplicación o por correo electrónico.</p>
+      <p>7.2. Nos reservamos el derecho de suspender el acceso a la Aplicación por mantenimiento, actualizaciones o incumplimiento de estos Términos.</p>
+
+      <h4>8. Limitación de Responsabilidad</h4>
+      <p>8.1. La Aplicación se ofrece "tal cual". No garantizamos su funcionamiento ininterrumpido o libre de errores.</p>
+      <p>8.2. <strong>Montacargas y Repuestos S.A.S</strong> no será responsable por:</p>
+      <ul>
+        <li>Daños indirectos, pérdida de datos o perjuicios derivados del uso del servicio.</li>
+        <li>Errores en información técnica proporcionada por Proveedores externos.</li>
+      </ul>
+
+      <h4>9. Ley Aplicable y Jurisdicción</h4>
+      <p>9.1. Estos Términos se rigen por las leyes de la <strong>República de Colombia</strong>.</p>
+      <p>9.2. Cualquier disputa se resolverá en los tribunales competentes de <strong>Medellín, Antioquia</strong>.</p>
+
+      <h4>10. Contacto</h4>
+      <p>Para consultas sobre estos Términos o el uso de la Aplicación, contáctenos en:</p>
+      <ul>
+        <li><strong>Correo electrónico</strong>: todonisanycat&#64;hotmail.com</li>
+        <li><strong>Dirección</strong>: Calle 92 N° 83 - 20 Medellín, Colombia</li>
+        <li><strong>Teléfono</strong>: +57 3176465312</li>
+      </ul>
+
+      <p class="important-note"><strong>Nota importante:</strong> Este documento es vinculante. Al utilizar el <strong>Catálogo Digital de Montacargas y Repuestos S.A.S</strong>, usted confirma que ha leído, entendido y aceptado estos Términos y Condiciones en su totalidad.</p>
+      <p class="footer">🔧 <em>"Soluciones en altura para su negocio"</em> — <strong>Montacargas y Repuestos S.A.S</strong> © 2025</p>
+    </div>
+  </div>
+</div>

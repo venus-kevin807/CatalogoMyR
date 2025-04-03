@@ -3,10 +3,61 @@
     <a href="/">
       <img src="./LOGO MYRS.A.S-Photoroom.png" alt="Montacargas y Repuestos S.A.S" class="logo">
     </a>
-    <div class="whatsapp-icon">
-      <a href="https://wa.me/3176465312" target="_blank">
-        <img src="./whats.png" alt="WhatsApp" class="whatsapp">
-      </a>
+    <div class="icons-container">
+      <div class="cart-icon" (click)="toggleCartDropdown($event)">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" *ngIf="cartCount > 0">{{ cartCount }}</span>
+
+        <!-- Dropdown del carrito -->
+        <div class="cart-dropdown" *ngIf="isCartOpen" (click)="onCartClick($event)">
+          <div class="cart-header">
+            <h3>Mi Carrito ({{ cartCount }} items)</h3>
+            <button class="close-cart" (click)="toggleCartDropdown($event)">×</button>
+          </div>
+
+          <div class="cart-items" *ngIf="cartItems.length > 0">
+            <div class="cart-item" *ngFor="let item of cartItems">
+              <div class="item-image">
+                <img [src]="item.product.imagen_url" [alt]="item.product.nombre">
+              </div>
+              <div class="item-details">
+                <h4>{{ item.product.nombre }}</h4>
+                <p>Ref: {{ item.product.str_referencia }}</p>
+                <p class="item-price">${{ item.product.precio | number }}</p>
+              </div>
+              <div class="item-quantity">
+                <button (click)="decreaseQuantity(item.product.id_repuesto)" [disabled]="item.quantity <= 1">-</button>
+                <span>{{ item.quantity }}</span>
+                <button (click)="increaseQuantity(item.product.id_repuesto)" [disabled]="item.product.stock <= item.quantity">+</button>
+              </div>
+              <button class="remove-item" (click)="removeItem(item.product.id_repuesto)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+
+            <div class="cart-total">
+              <span>Total:</span>
+              <span>${{ cartTotal | number }}</span>
+            </div>
+
+            <div class="cart-actions">
+              <button class="btn-checkout" (click)="checkout()">Finalizar Compra</button>
+              <button class="btn-clear" (click)="clearCart()">Vaciar Carrito</button>
+            </div>
+          </div>
+
+          <div class="empty-cart" *ngIf="cartItems.length === 0">
+            <p>Tu carrito está vacío</p>
+            <button class="btn-shop" routerLink="/catalog">Ver Catálogo</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="whatsapp-icon">
+        <a href="https://wa.me/3176465312" target="_blank">
+          <img src="./whats.png" alt="WhatsApp" class="whatsapp">
+        </a>
+      </div>
     </div>
   </div>
 
@@ -14,7 +65,6 @@
   <nav *ngIf="manufacturers.length === 0" class="navigation loading-state">
     <div class="spinner"></div>
     <p>Cargando fabricantes...</p>
-
   </nav>
 
   <!-- Manufacturers Navigation -->

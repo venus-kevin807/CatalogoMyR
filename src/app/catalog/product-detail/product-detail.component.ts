@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from './../services/product.service';
 import { Product } from '../../shared/models/product.model';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -14,10 +15,10 @@ export class ProductDetailComponent implements OnInit {
   error: string | null = null;
   isDescriptionExpanded = true; // Por defecto expandido
 
-
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +35,22 @@ export class ProductDetailComponent implements OnInit {
 
   toggleDescription(): void {
     this.isDescriptionExpanded = !this.isDescriptionExpanded;
+  }
+
+  addToCart(): void {
+    if (this.product && this.product.stock > 0) {
+      this.cartService.addToCart(this.product);
+      // La notificación ahora la maneja el servicio con Toastr
+    }
+  }
+
+  // Nuevo método para generar el enlace de WhatsApp
+  getWhatsAppLink(): string {
+    if (!this.product) return 'https://wa.me/3176465312';
+
+    const message = `Hola, me interesa comprar el siguiente producto:\n${this.product.nombre} (Ref: ${this.product.str_referencia})\nPrecio: $${this.product.precio.toLocaleString()}`;
+
+    return `https://wa.me/3176465312?text=${encodeURIComponent(message)}`;
   }
 
   private loadProductDetails(productId: number): void {

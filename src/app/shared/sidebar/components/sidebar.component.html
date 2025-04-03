@@ -61,10 +61,7 @@
     <h3 class="section-title">Información</h3>
     <div class="info-list">
       <div class="info-item">
-        <a routerLink="/contact">Contáctenos</a>
-      </div>
-      <div class="info-item">
-        <a routerLink="/terms">Términos y condiciones</a>
+        <a  href="#" (click)="openTermsModal($event)">Términos y condiciones</a>
       </div>
       <div class="info-item">
         <a routerLink="/about">Sobre Nosotros</a>
@@ -74,4 +71,8 @@
 
 </div>
 
-
+<!-- Agregar el componente modal al final del template -->
+<app-terms-modal
+  [isOpen]="isTermsModalOpen"
+  (closeModal)="closeTermsModal()">
+</app-terms-modal>
