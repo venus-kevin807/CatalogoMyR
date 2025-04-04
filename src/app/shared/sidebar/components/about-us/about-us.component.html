@@ -1,0 +1,128 @@
+<!-- about-us-modal.component.html -->
+<div class="modal-overlay" [class.show]="isOpen" (click)="onClose()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>SOBRE NOSOTROS</h2>
+      <button class="close-button" (click)="onClose()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="company-header">
+        <div class="logo-container">
+          <!-- Placeholder para logo -->
+          <img src="./LOGO MYRS.A.S-Photoroom.png" alt="">
+        </div>
+        <h3>MONTACARGAS Y REPUESTOS S.A.S</h3>
+        <p class="tagline">Soluciones en altura para su negocio desde 2005</p>
+      </div>
+
+      <div class="about-section">
+        <h4>Quiénes Somos</h4>
+        <p>MONTACARGAS Y REPUESTOS S.A.S es una empresa líder en Medellín, Colombia, especializada en la venta y distribución de repuestos para montacargas de las marcas más reconocidas a nivel mundial. Con más de 18 años de experiencia en el mercado, nos hemos consolidado como un aliado estratégico para empresas industriales, logísticas y de manufactura que requieren soluciones confiables para sus equipos de elevación.</p>
+
+        <div class="image-gallery">
+          <div class="gallery-image">
+            <div class="placeholder-image">Instalaciones</div>
+          </div>
+          <div class="gallery-image">
+            <div class="placeholder-image">Equipo</div>
+          </div>
+          <div class="gallery-image">
+            <div class="placeholder-image">Inventario</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="brands-section">
+        <h4>Marcas Especializadas</h4>
+        <p>Suministramos repuestos originales y alternativos de alta calidad para las principales marcas del mercado:</p>
+        <div class="brands-container">
+          <div class="brand-item"><span class="brand-name">NISSAN</span></div>
+          <div class="brand-item"><span class="brand-name">MITSUBISHI / CATERPILLAR</span></div>
+          <div class="brand-item"><span class="brand-name">HELI</span></div>
+          <div class="brand-item"><span class="brand-name">HANGCHA</span></div>
+          <div class="brand-item"><span class="brand-name">YALE</span></div>
+          <div class="brand-item"><span class="brand-name">TCM</span></div>
+          <div class="brand-item"><span class="brand-name">TOYOTA</span></div>
+        </div>
+      </div>
+
+      <div class="services-section">
+        <h4>Nuestros Servicios</h4>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">🛒</div>
+            <h5>Venta de Repuestos</h5>
+            <p>Amplio inventario de repuestos originales y homologados para todas las marcas principales.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🔧</div>
+            <h5>Asesoría Técnica</h5>
+            <p>Equipo de expertos para ayudarle a encontrar la pieza exacta que necesita.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🚚</div>
+            <h5>Distribución Nacional</h5>
+            <p>Envíos a toda Colombia con tiempos de entrega optimizados.</p>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">📋</div>
+            <h5>Catálogos Especializados</h5>
+            <p>Acceso a información técnica detallada de cada componente.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="values-section">
+        <h4>Nuestros Valores</h4>
+        <div class="values-container">
+          <div class="value-item">
+            <h5>Calidad</h5>
+            <p>Nos comprometemos a ofrecer solo productos que cumplan con los más altos estándares de calidad y durabilidad.</p>
+          </div>
+          <div class="value-item">
+            <h5>Conocimiento</h5>
+            <p>Nuestro equipo se mantiene constantemente actualizado sobre las últimas innovaciones en el sector.</p>
+          </div>
+          <div class="value-item">
+            <h5>Servicio</h5>
+            <p>La satisfacción del cliente es nuestra prioridad, brindando atención personalizada y soluciones efectivas.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-section">
+        <h4>Contáctenos</h4>
+        <div class="contact-grid">
+          <div class="contact-info">
+            <div class="contact-item">
+              <span class="contact-icon">📍</span>
+              <span class="contact-text">Calle 92 N° 83 - 20, Medellín, Colombia</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">📞</span>
+              <span class="contact-text">+57 3176465312</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">✉️</span>
+              <span class="contact-text">todonisanycat&#64;hotmail.com</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">⏰</span>
+              <span class="contact-text">Lunes a Viernes: 8:00 AM - 5:30 PM<br>Sábados: 8:00 AM - 1:00 PM</span>
+            </div>
+          </div>
+          <div class="map-container">
+            <div class="map-placeholder">Mapa de Ubicación</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <p>¿Necesita repuestos para su montacargas? ¡Contáctenos hoy mismo!</p>
+        <button class="cta-button">Solicitar Cotización</button>
+      </div>
+
+      <p class="footer">🔧 <em>"Soluciones en altura para su negocio"</em> — <strong>Montacargas y Repuestos S.A.S</strong> © 2025</p>
+    </div>
+  </div>
+</div>

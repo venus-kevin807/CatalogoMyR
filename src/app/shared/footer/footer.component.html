@@ -19,17 +19,15 @@
     <div class="footer-section">
       <h3 class="section-title">INFORMACIÓN</h3>
       <ul>
-        <li><a href="#">Términos y Condiciones</a></li>
-        <li><a href="#">Sobre Nosotros</a></li>
-        <li><a href="#">Envíos</a></li>
+        <li><a  href="#" (click)="openTermsModal($event)">Términos y condiciones</a></li>
+        <li><a  href="#" (click)="openAboutUs($event)">Sobre Nosotros</a></li>
       </ul>
     </div>
     <div class="footer-section">
       <h3 class="section-title">NOVEDADES</h3>
       <ul>
-        <li><a href="#">Nuestra tienda</a></li>
-        <li><a href="#">Contacte con nosotros</a></li>
-        <li><a href="#">Mapa del sitio</a></li>
+        <li><a  href="https://wa.me/3176465312" target="_blank">Contacte con nosotros</a></li>
+        <li><a href="#" (click)="openMapModal($event)">Mapa del sitio</a></li>
       </ul>
     </div>
   </div>
@@ -37,3 +35,18 @@
     <p>© Copyright 2025 MONTACARGAS Y REPUESTOS S.A.S. All Rights Reserved.</p>
   </div>
 </footer>
+
+<app-terms-modal
+  [isOpen]="isTermsModalOpen"
+  (closeModal)="closeTermsModal()"
+></app-terms-modal>
+
+<app-about-us-modal
+  [isOpen]="isAboutUsOpen"
+  (closeModal)="closeAboutUs()">
+</app-about-us-modal>
+
+<app-map-modal
+  [isOpen]="isMapModalOpen"
+  (closeModal)="closeMapModal()">
+</app-map-modal>

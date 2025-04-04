@@ -11,9 +11,8 @@ import { HttpClientModule } from '@angular/common/http'
 @NgModule({
   declarations: [
     HeaderComponent,
-    FooterComponent,
     PaginationComponent,
-    BannerComponent
+    BannerComponent,
   ],
   imports: [
     CommonModule,
@@ -23,8 +22,7 @@ import { HttpClientModule } from '@angular/common/http'
   ],
   exports: [
     HeaderComponent,
-    FooterComponent,
-    PaginationComponent,
+     PaginationComponent,
     BannerComponent
   ]
 })

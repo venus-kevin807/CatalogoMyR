@@ -64,7 +64,7 @@
         <a  href="#" (click)="openTermsModal($event)">Términos y condiciones</a>
       </div>
       <div class="info-item">
-        <a routerLink="/about">Sobre Nosotros</a>
+        <a  href="#" (click)="openAboutUs($event)">Sobre Nosotros</a>
       </div>
     </div>
   </div>
@@ -76,3 +76,8 @@
   [isOpen]="isTermsModalOpen"
   (closeModal)="closeTermsModal()">
 </app-terms-modal>
+
+<app-about-us-modal
+  [isOpen]="isAboutUsOpen"
+  (closeModal)="closeAboutUs()">
+</app-about-us-modal>

@@ -15,6 +15,7 @@ export class SidebarComponent implements OnInit {
   error: string | null = null;
   isSidebarOpen = false;
   isTermsModalOpen = false;
+  isAboutUsOpen = false;
 
   constructor(private sidebarService: SidebarService) { }
 
@@ -26,6 +27,15 @@ export class SidebarComponent implements OnInit {
   openTermsModal(event: Event): void {
     event.preventDefault();
     this.isTermsModalOpen = true;
+  }
+
+  openAboutUs(event: Event): void {
+    event.preventDefault();
+    this.isAboutUsOpen = true;
+  }
+
+  closeAboutUs(): void {
+    this.isAboutUsOpen = false;
   }
 
   // Método para cerrar modal
