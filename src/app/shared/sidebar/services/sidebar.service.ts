@@ -33,7 +33,7 @@ export class SidebarService {
     return this.http.get<CategoriesResponse>(`${this.apiUrl}/categorias.php`).pipe(
       switchMap(categoriesResponse => {
         // Obtener todas las subcategorías
-        return this.http.get<SubcategoriesResponse>(`${this.apiUrl}/subcategorias.php`).pipe(
+        return this.http.get<SubcategoriesResponse>(`${this.apiUrl}/subcategorias_c.php`).pipe(
           map(subcategoriesResponse => {
             // Mapear las categorías y agregar sus subcategorías
             return categoriesResponse.categorias.map(cat => {
@@ -70,7 +70,7 @@ export class SidebarService {
    * Obtiene subcategorías por ID de categoría
    */
   getSubcategoriesByCategoryId(categoryId: number): Observable<Subcategory[]> {
-    return this.http.get<SubcategoriesResponse>(`${this.apiUrl}/subcategorias.php?categoria_id=${categoryId}`).pipe(
+    return this.http.get<SubcategoriesResponse>(`${this.apiUrl}/subcategorias_c.php?categoria_id=${categoryId}`).pipe(
       map(response =>
         response.subcategorias.map(subcat => ({
           id: subcat.id,
