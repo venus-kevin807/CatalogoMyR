@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   cartCount: number = 0;
   isCartOpen: boolean = false;
   cartTotal: number = 0;
+  isMobile: boolean = window.innerWidth <= 768;
 
   private subscriptions: Subscription[] = [];
 
@@ -62,6 +63,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.isCartOpen = false;
       }
     }
+  }
+
+  onHamburgerClick(): void {
+    this.sidebarService.toggleSidebar(); // Alterna el drawer
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.isMobile = window.innerWidth <= 768;
   }
 
   loadManufacturers(): void {

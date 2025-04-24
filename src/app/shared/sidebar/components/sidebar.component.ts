@@ -1,64 +1,54 @@
-import { Component, OnInit } from '@angular/core';
-import { SidebarService } from './../services/sidebar.service';
-import { Category, Manufacturer } from './../models/sidebar.model';
-import { BehaviorSubject } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { SidebarService } from '../services/sidebar.service';
+import { Category } from '../models/sidebar.model';
+import { Manufacturer } from '../../models/manufacturer.model';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, OnDestroy {
+  isSidebarOpen: boolean = false; // Estado del drawer móvil
+  loading: boolean = false;
+  error: string = '';
+
   categories: Category[] = [];
   manufacturers: Manufacturer[] = [];
-  loading = true;
-  error: string | null = null;
-  isSidebarOpen = false;
-  isTermsModalOpen = false;
-  isAboutUsOpen = false;
 
-  constructor(private sidebarService: SidebarService) { }
+  private sidebarSub: Subscription = new Subscription();
+
+  // Variables para modales (ejemplo)
+  isTermsModalOpen: boolean = false;
+  isAboutUsOpen: boolean = false;
+
+  constructor(private sidebarService: SidebarService) {}
 
   ngOnInit(): void {
+    // Suscribirse al estado del sidebar móvil
+    this.sidebarSub = this.sidebarService.sidebarOpen$.subscribe(open => {
+      this.isSidebarOpen = open;
+    });
+
+    // Cargar datos
     this.loadCategories();
     this.loadManufacturers();
   }
 
-  openTermsModal(event: Event): void {
-    event.preventDefault();
-    this.isTermsModalOpen = true;
-  }
-
-  openAboutUs(event: Event): void {
-    event.preventDefault();
-    this.isAboutUsOpen = true;
-  }
-
-  closeAboutUs(): void {
-    this.isAboutUsOpen = false;
-  }
-
-  // Método para cerrar modal
-  closeTermsModal(): void {
-    this.isTermsModalOpen = false;
-  }
-
-  toggleSidebar(): void {
-    this.isSidebarOpen = !this.isSidebarOpen;
+  ngOnDestroy(): void {
+    this.sidebarSub.unsubscribe();
   }
 
   loadCategories(): void {
     this.loading = true;
-    this.error = null;
-
     this.sidebarService.getCategories().subscribe({
-      next: (categories) => {
-        this.categories = categories;
+      next: (cats) => {
+        this.categories = cats;
         this.loading = false;
       },
       error: (err) => {
-        console.error('Error cargando categorías:', err);
-        this.error = 'No se pudieron cargar las categorías. Intente nuevamente más tarde.';
+        this.error = err.message;
         this.loading = false;
       }
     });
@@ -66,42 +56,56 @@ export class SidebarComponent implements OnInit {
 
   loadManufacturers(): void {
     this.sidebarService.getManufacturers().subscribe({
-      next: (manufacturers) => {
-        this.manufacturers = manufacturers;
+      next: (mans) => {
+        this.manufacturers = mans;
       },
       error: (err) => {
-        console.error('Error cargando fabricantes:', err);
-        // Error handling is done in the service with fallback data
+        console.error(err);
       }
     });
   }
 
-  // Toggle visibility of subcategories
-  toggleSubcategories(category: Category): void {
+  // Alterna la visualización de subcategorías
+  toggleSubcategories(category: any): void {
     category.showSubcategories = !category.showSubcategories;
   }
 
-  // Select a category and filter catalog
-  selectCategory(categoryId: number): void {
-    this.sidebarService.selectCategory(categoryId);
-  }
-
-  // Select a subcategory and filter catalog
+  // Selecciona una subcategoría y cierra el drawer en móvil
   selectSubcategory(categoryId: number, subcategoryId: number, subcategoryName: string): void {
     this.sidebarService.selectSubcategory(categoryId, subcategoryId, subcategoryName);
+    this.sidebarService.toggleSidebar(false); // Cierra para móviles
   }
 
-  // Select a manufacturer and filter catalog
-  selectManufacturer(manufacturerId: number): void {
-    this.sidebarService.selectManufacturer(manufacturerId);
-  }
-
-  // Clear all filters
   clearFilters(): void {
     this.sidebarService.clearFilters();
+    this.sidebarService.toggleSidebar(false);
   }
 
-  // Retry loading data from API
+  selectManufacturer(manufacturerId: number): void {
+    this.sidebarService.selectManufacturer(manufacturerId);
+    this.sidebarService.toggleSidebar(false);
+  }
+
+  openTermsModal(event: Event): void {
+    event.preventDefault();
+    this.isTermsModalOpen = true;
+  }
+  closeTermsModal(): void {
+    this.isTermsModalOpen = false;
+  }
+  openAboutUs(event: Event): void {
+    event.preventDefault();
+    this.isAboutUsOpen = true;
+  }
+  closeAboutUs(): void {
+    this.isAboutUsOpen = false;
+  }
+
+  // Cierra el drawer móvil
+  closeSidebar(): void {
+    this.sidebarService.toggleSidebar(false);
+  }
+
   retryLoading(): void {
     this.loadCategories();
   }

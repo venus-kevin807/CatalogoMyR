@@ -1,22 +1,16 @@
-<!-- sidebar.component.html -->
-<div class="sidebar" [class.open]="isSidebarOpen">
-  <!-- Categories Section -->
+<!-- SIDEBAR DESKTOP (visible en pantallas grandes) -->
+<div class="sidebar desktop-sidebar">
+  <!-- Sección de Categorías -->
   <div class="sidebar-section">
     <h3 class="section-title">Categorías</h3>
-
-    <!-- Loading State -->
     <div *ngIf="loading" class="loading-state">
       <div class="spinner"></div>
       <p>Cargando categorías...</p>
     </div>
-
-    <!-- Error State -->
     <div *ngIf="error" class="error-state">
       <p>{{ error }}</p>
       <button class="retry-button" (click)="retryLoading()">Reintentar</button>
     </div>
-
-    <!-- Categories List -->
     <div *ngIf="!loading && !error" class="category-list">
       <div *ngFor="let category of categories" class="category-item">
         <div class="category-header" (click)="toggleSubcategories(category)">
@@ -25,7 +19,7 @@
         </div>
         <div class="subcategory-list" [class.show]="category.showSubcategories">
           <div *ngFor="let subcategory of category.subcategories" class="subcategory-item">
-            <a (click)="selectSubcategory(category.id, subcategory.id, subcategory.name); $event.preventDefault()" href="#">
+            <a href="#" (click)="selectSubcategory(category.id, subcategory.id, subcategory.name); $event.preventDefault()">
               {{ subcategory.name }}
             </a>
           </div>
@@ -34,16 +28,13 @@
     </div>
   </div>
 
-  <!-- Manufacturers Section -->
+  <!-- Sección de Fabricantes -->
   <div class="sidebar-section">
     <h3 class="section-title">Fabricantes</h3>
-
-    <!-- Loading State for Manufacturers -->
     <div *ngIf="manufacturers.length === 0" class="loading-state">
       <div class="spinner"></div>
       <p>Cargando fabricantes...</p>
     </div>
-
     <div *ngIf="manufacturers.length > 0" class="manufacturer-list">
       <div class="manufacturer-item all-manufacturers">
         <a href="#" (click)="clearFilters(); $event.preventDefault()">Todos los fabricantes</a>
@@ -56,27 +47,93 @@
     </div>
   </div>
 
-  <!-- Information Section -->
+  <!-- Sección de Información -->
   <div class="sidebar-section">
     <h3 class="section-title">Información</h3>
     <div class="info-list">
       <div class="info-item">
-        <a  href="#" (click)="openTermsModal($event)">Términos y condiciones</a>
+        <a href="#" (click)="openTermsModal($event)">Términos y condiciones</a>
       </div>
       <div class="info-item">
-        <a  href="#" (click)="openAboutUs($event)">Sobre Nosotros</a>
+        <a href="#" (click)="openAboutUs($event)">Sobre Nosotros</a>
       </div>
     </div>
   </div>
-
 </div>
 
-<!-- Agregar el componente modal al final del template -->
+<!-- SIDEBAR MÓVIL (DRAWER) -->
+<div class="mobile-sidebar-overlay" *ngIf="isSidebarOpen" (click)="closeSidebar()">
+  <div class="mobile-sidebar" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="closeSidebar()">×</button>
+    <!-- Sección de Categorías -->
+    <div class="sidebar-section">
+      <h3 class="section-title">Categorías</h3>
+      <div *ngIf="loading" class="loading-state">
+        <div class="spinner"></div>
+        <p>Cargando categorías...</p>
+      </div>
+      <div *ngIf="error" class="error-state">
+        <p>{{ error }}</p>
+        <button class="retry-button" (click)="retryLoading()">Reintentar</button>
+      </div>
+      <div *ngIf="!loading && !error" class="category-list">
+        <div *ngFor="let category of categories" class="category-item">
+          <div class="category-header" (click)="toggleSubcategories(category)">
+            <span>{{ category.name }}</span>
+            <span class="arrow" [class.expanded]="category.showSubcategories">›</span>
+          </div>
+          <div class="subcategory-list" [class.show]="category.showSubcategories">
+            <div *ngFor="let subcategory of category.subcategories" class="subcategory-item">
+              <a href="#" (click)="selectSubcategory(category.id, subcategory.id, subcategory.name); $event.preventDefault()">
+                {{ subcategory.name }}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Fabricantes -->
+    <div class="sidebar-section">
+      <h3 class="section-title">Fabricantes</h3>
+      <div *ngIf="manufacturers.length === 0" class="loading-state">
+        <div class="spinner"></div>
+        <p>Cargando fabricantes...</p>
+      </div>
+      <div *ngIf="manufacturers.length > 0" class="manufacturer-list">
+        <div class="manufacturer-item all-manufacturers">
+          <a href="#" (click)="clearFilters(); $event.preventDefault()">Todos los fabricantes</a>
+        </div>
+        <div *ngFor="let manufacturer of manufacturers" class="manufacturer-item">
+          <a href="#" (click)="selectManufacturer(manufacturer.id); $event.preventDefault()">
+            {{ manufacturer.name }}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Información -->
+    <div class="sidebar-section">
+      <h3 class="section-title">Información</h3>
+      <div class="info-list">
+        <div class="info-item">
+          <a href="#" (click)="openTermsModal($event)">Términos y condiciones</a>
+        </div>
+        <div class="info-item">
+          <a href="#" (click)="openAboutUs($event)">Sobre Nosotros</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para Términos y Condiciones -->
 <app-terms-modal
   [isOpen]="isTermsModalOpen"
   (closeModal)="closeTermsModal()">
 </app-terms-modal>
 
+<!-- Modal para Sobre Nosotros -->
 <app-about-us-modal
   [isOpen]="isAboutUsOpen"
   (closeModal)="closeAboutUs()">
