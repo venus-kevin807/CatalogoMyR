@@ -10,9 +10,8 @@ import { Manufacturer, ManufacturersResponse } from '../../models/manufacturer.m
   providedIn: 'root'
 })
 export class SidebarService {
-  private apiUrl = 'http://localhost:8080/repuestos-api'; // Ajusta la URL a tu API
+  private apiUrl = 'http://localhost:8080/repuestos-api';
 
-  // Observable para el estado del sidebar (para móviles)
   private sidebarOpenSource = new BehaviorSubject<boolean>(false);
   sidebarOpen$ = this.sidebarOpenSource.asObservable();
 
@@ -21,7 +20,6 @@ export class SidebarService {
     private catalogService: CatalogService
   ) {}
 
-  // Alterna o fija el estado del sidebar móvil
   toggleSidebar(open?: boolean): void {
     if (open !== undefined) {
       this.sidebarOpenSource.next(open);
@@ -30,7 +28,6 @@ export class SidebarService {
     }
   }
 
-  // Obtiene fabricantes
   getManufacturers(): Observable<Manufacturer[]> {
     return this.http.get<ManufacturersResponse>(`${this.apiUrl}/manufactures.php`).pipe(
       map(response => response.manufacturers),
@@ -41,7 +38,6 @@ export class SidebarService {
     );
   }
 
-  // Obtiene categorías con sus subcategorías
   getCategories(): Observable<Category[]> {
     return this.http.get<CategoriesResponse>(`${this.apiUrl}/categorias.php`).pipe(
       switchMap(categoriesResponse => {
@@ -74,7 +70,6 @@ export class SidebarService {
     );
   }
 
-  // Métodos para que el sidebar se integre con el catálogo
   selectCategory(categoryId: number): void {
     this.catalogService.setSelectedCategory(categoryId);
   }

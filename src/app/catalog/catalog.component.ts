@@ -19,7 +19,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
   selectedSubcategoryName: string | null = null;
   selectedManufacturerId: number | null = null;
   currentPage: number = 1;
-  itemsPerPage: number = 8; // You can adjust this
+  itemsPerPage: number = 8;
   totalItems: number = 0;
   categories: Category[] = [];
   categoryNames: { [key: number]: string } = {};
@@ -42,7 +42,7 @@ export class CatalogComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadCategories();
     this.loadManufacturers();
-    this.loadInitialProducts(); // Cambiar de loadProducts() a loadInitialProducts()
+    this.loadInitialProducts();
 
     this.subscriptions.push(
       this.catalogService.selectedCategory$.subscribe(categoryId => {
@@ -82,7 +82,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
         acc[category.id] = category.name;
         return acc;
       }, {});
-          // Añadir esta línea
       this.loadSubcategoryNames();
     });
 
@@ -91,14 +90,12 @@ export class CatalogComponent implements OnInit, OnDestroy {
   addToCart(product: Product): void {
     if (product.stock > 0) {
       this.cartService.addToCart(product);
-      // La notificación ahora la maneja el servicio con Toastr
     }
   }
 
 
 
   private loadSubcategoryNames(): void {
-    // Recorre tus categorías para crear un mapa de ID a nombre de subcategoría
     this.categories.forEach(category => {
       if (category.subcategories) {
         category.subcategories.forEach(subcategory => {
@@ -150,7 +147,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
   }
 
   private loadProducts(): void {
-    // Solo cargar si la carga inicial está completa o si estamos aplicando filtros
     if (!this.initialLoadComplete &&
         !this.selectedCategoryId &&
         !this.selectedSubcategory &&
@@ -166,15 +162,13 @@ export class CatalogComponent implements OnInit, OnDestroy {
         perPage: this.itemsPerPage
     };
 
-    console.log('Loading products with filters:', filters); // Para depuración
+    console.log('Loading products with filters:', filters);
 
     this.productService.getProducts(filters).subscribe({
         next: (response) => {
-            console.log('Products loaded:', response); // Para depuración
+            console.log('Products loaded:', response);
             this.products = response.products;
             this.totalItems = response.total;
-
-            // Marcar como completada la carga inicial si no está marcada
             if (!this.initialLoadComplete) {
                 this.initialLoadComplete = true;
             }
@@ -194,7 +188,6 @@ export class CatalogComponent implements OnInit, OnDestroy {
   onPageChange(page: number): void {
     this.currentPage = page;
     this.loadProducts();
-    // Optionally scroll to top of products
     window.scrollTo(0, 0);
   }
 
@@ -204,14 +197,8 @@ export class CatalogComponent implements OnInit, OnDestroy {
     this.selectedSubcategory = null;
     this.selectedSubcategoryName = null;
     this.selectedManufacturerId = null;
-
-    // Notificar a los servicios que los filtros se han limpiado
     this.catalogService.clearFilters();
-
-    // Añadir esta línea para notificar al SidebarService
     this.sidebarService.notifyFiltersClear();
-
-    // Volver a cargar todos los productos
     this.loadInitialProducts();
 }
 }

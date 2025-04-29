@@ -1,11 +1,8 @@
   <div class="product-detail-container" *ngIf="!loading && product">
     <div class="product-detail-grid">
-      <!-- Columna izquierda: Imagen del producto -->
       <div class="product-image-container">
         <img [src]="product.imagen_url" [alt]="product.nombre" class="product-detail-image">
       </div>
-
-      <!-- Columna derecha: Información del producto -->
       <div class="product-info-container">
         <h1 class="product-title">{{ product.nombre }}</h1>
 
@@ -45,7 +42,6 @@
       </div>
     </div>
 
-    <!-- Ficha técnica -->
     <div class="technical-details">
       <h2 class="section-title">FICHA TÉCNICA</h2>
       <table class="specs-table">
@@ -65,13 +61,11 @@
     </div>
   </div>
 
-  <!-- Estado de carga -->
   <div class="loading-container" *ngIf="loading">
     <div class="spinner"></div>
     <p>Cargando detalles del producto...</p>
   </div>
 
-  <!-- Estado de error -->
   <div class="error-container" *ngIf="!loading && error">
     <p class="error-message">{{ error }}</p>
     <button class="btn-primary" routerLink="/catalog">Volver al catálogo</button>

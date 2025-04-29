@@ -13,8 +13,6 @@ export class ProductService {
   public defaultImage = 'assets/images/default-repuesto.png';
 
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
-
-// product.service.ts (additions to your existing service)
 getProducts(filters: {
   id_categoria?: number,
   id_subcategoria?: number,
@@ -24,8 +22,6 @@ getProducts(filters: {
   perPage?: number
 } = {}): Observable<{products: Product[], total: number}> {
   let params = new HttpParams();
-
-  // Add existing filter parameters
   if (filters.id_categoria) {
     params = params.set('id_categoria', filters.id_categoria.toString());
   }
@@ -38,8 +34,6 @@ getProducts(filters: {
   if (filters.id_repuesto) {
     params = params.set('id_repuesto', filters.id_repuesto.toString());
   }
-
-  // Add pagination parameters
   if (filters.page) {
     params = params.set('page', filters.page.toString());
   }
@@ -55,7 +49,7 @@ getProducts(filters: {
       }
       return {
         products: response.data.map((product: any) => this.processProduct(product)),
-        total: response.total || response.data.length // Assuming your API returns total count
+        total: response.total || response.data.length
       };
     }),
     catchError(error => {
@@ -74,7 +68,6 @@ getProducts(filters: {
   }
 
 private processProduct(product: any): Product {
-    // URL directa al endpoint de imágenes
     if (product.id_repuesto) {
         product.imagen_url = `http://localhost:8080/repuestos-api/get_image.php?id=${product.id_repuesto}`;
     } else {

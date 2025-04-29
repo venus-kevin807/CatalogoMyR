@@ -13,7 +13,7 @@ export class ProductDetailComponent implements OnInit {
   product: Product | null = null;
   loading = true;
   error: string | null = null;
-  isDescriptionExpanded = true; // Por defecto expandido
+  isDescriptionExpanded = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,7 +23,7 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const productId = +params['id']; // Convertir a número
+      const productId = +params['id'];
       if (productId) {
         this.loadProductDetails(productId);
       } else {
@@ -40,11 +40,9 @@ export class ProductDetailComponent implements OnInit {
   addToCart(): void {
     if (this.product && this.product.stock > 0) {
       this.cartService.addToCart(this.product);
-      // La notificación ahora la maneja el servicio con Toastr
     }
   }
 
-  // Nuevo método para generar el enlace de WhatsApp
   getWhatsAppLink(): string {
     if (!this.product) return 'https://wa.me/3176465312';
 

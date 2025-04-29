@@ -1,4 +1,3 @@
-// pagination.component.ts
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 
 @Component({
@@ -32,24 +31,20 @@ export class PaginationComponent implements OnChanges {
     this.visiblePageNumbers = [];
 
     if (this.totalPages <= maxVisiblePages) {
-      // Show all pages if there are 5 or fewer
       for (let i = 1; i <= this.totalPages; i++) {
         this.visiblePageNumbers.push(i);
       }
     } else {
-      // For current page near start
       if (this.currentPage <= 3) {
         for (let i = 1; i <= 5; i++) {
           this.visiblePageNumbers.push(i);
         }
       }
-      // For current page near end
       else if (this.currentPage >= this.totalPages - 2) {
         for (let i = this.totalPages - 4; i <= this.totalPages; i++) {
           this.visiblePageNumbers.push(i);
         }
       }
-      // For current page in middle
       else {
         for (let i = this.currentPage - 2; i <= this.currentPage + 2; i++) {
           this.visiblePageNumbers.push(i);

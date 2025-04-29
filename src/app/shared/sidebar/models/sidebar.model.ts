@@ -1,4 +1,3 @@
-// Models for sidebar component
 export interface Category {
   id: number;
   name: string;
@@ -20,7 +19,6 @@ export interface Manufacturer {
   name: string;
 }
 
-// API response interfaces
 export interface CategoriesResponse {
   categorias: {
     id: number;

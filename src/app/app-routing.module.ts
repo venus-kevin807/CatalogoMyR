@@ -4,10 +4,10 @@ import { CatalogComponent } from './catalog/catalog.component';
 import { ProductDetailComponent } from './catalog/product-detail/product-detail.component';
 
 const routes: Routes = [
-  { path: '', component: CatalogComponent }, // Muestra el catálogo por defecto
+  { path: '', component: CatalogComponent },
   { path: 'catalog', component: CatalogComponent },
   { path: 'product/:id', component: ProductDetailComponent },
-  { path: '**', redirectTo: '', pathMatch: 'full' } // Redirige rutas inválidas al inicio
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({

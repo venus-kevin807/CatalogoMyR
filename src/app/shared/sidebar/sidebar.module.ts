@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Necesario para [(ngModel)]
+import { FormsModule } from '@angular/forms';
 import { SidebarComponent } from './components/sidebar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TermsModalComponent } from './components/terms-modal/terms-modal.component';
@@ -13,8 +13,8 @@ import { MapModalComponent } from './components/map-modal/map-modal.component';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule // Importamos ReactiveFormsModule para usar formularios reactivos
+    ReactiveFormsModule
   ],
-  exports: [SidebarComponent, FooterComponent] // Exportamos el componente para poder usarlo en otros módulos
+  exports: [SidebarComponent, FooterComponent]
 })
 export class SidebarModule {}

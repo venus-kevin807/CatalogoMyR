@@ -14,8 +14,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isSidebarOpen = false;
   manufacturers: Manufacturer[] = [];
   selectedManufacturer: Manufacturer | null = null;
-
-  // Propiedades del carrito
   cartItems: CartItem[] = [];
   cartCount: number = 0;
   isCartOpen: boolean = false;
@@ -33,8 +31,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadManufacturers();
     this.loadCartData();
-
-    // Agregar suscripción a la notificación de limpieza de filtros
     this.subscriptions.push(
       this.sidebarService.filtersCleared$.subscribe(cleared => {
         if (cleared) {
@@ -45,14 +41,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Cancelar todas las suscripciones para evitar memory leaks
     this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
-  // Método para cerrar el carrito cuando se hace clic fuera de él
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
-    // Verificar si el clic fue dentro del carrito o en el ícono del carrito
     const cartDropdown = document.querySelector('.cart-dropdown');
     const cartIcon = document.querySelector('.cart-icon');
 
@@ -66,7 +59,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   onHamburgerClick(): void {
-    this.sidebarService.toggleSidebar(); // Alterna el drawer
+    this.sidebarService.toggleSidebar();
   }
 
   @HostListener('window:resize', ['$event'])
@@ -86,27 +79,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   selectManufacturer(manufacturer: Manufacturer): void {
-    // Navigate to catalog
     this.router.navigate(['/catalog']);
-
-    // Select manufacturer in sidebar service
     this.sidebarService.selectManufacturer(manufacturer.id);
-
-    // Update selected manufacturer
     this.selectedManufacturer = manufacturer;
   }
 
-  // Método para cargar datos del carrito
   loadCartData(): void {
-    // Suscribirse a los items del carrito
     this.subscriptions.push(
       this.cartService.cartItems$.subscribe(items => {
         this.cartItems = items;
         this.cartTotal = this.cartService.getCartTotal();
       })
     );
-
-    // Suscribirse al contador del carrito
     this.subscriptions.push(
       this.cartService.cartCount$.subscribe(count => {
         this.cartCount = count;
@@ -114,21 +98,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
     );
   }
 
-  // Método para mostrar/ocultar el dropdown del carrito
   toggleCartDropdown(event?: MouseEvent): void {
-    // Si se proporciona un evento, evitar propagación
     if (event) {
       event.stopPropagation();
     }
     this.isCartOpen = !this.isCartOpen;
   }
 
-  // Evitar que los clics dentro del carrito lo cierren
   onCartClick(event: MouseEvent): void {
     event.stopPropagation();
   }
 
-  // Método para disminuir la cantidad de un producto
   decreaseQuantity(productId: number): void {
     const item = this.cartItems.find(item => item.product.id_repuesto === productId);
     if (item && item.quantity > 1) {
@@ -136,7 +116,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Método para aumentar la cantidad de un producto
   increaseQuantity(productId: number): void {
     const item = this.cartItems.find(item => item.product.id_repuesto === productId);
     if (item) {
@@ -144,20 +123,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Método para eliminar un producto del carrito
   removeItem(productId: number): void {
     this.cartService.removeFromCart(productId);
   }
 
-  // Método para vaciar todo el carrito
   clearCart(): void {
     this.cartService.clearCart();
   }
 
-  // Método para proceder al checkout
   checkout(): void {
-    // Aquí puedes implementar la lógica para finalizar la compra
-    // Por ejemplo, navegar a una página de checkout
     this.router.navigate(['/checkout']);
 
 
@@ -167,8 +141,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     const whatsappUrl = `https://wa.me/3176465312?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
-
-    // Cerrar el dropdown después del checkout
     this.isCartOpen = false;
   }
 }

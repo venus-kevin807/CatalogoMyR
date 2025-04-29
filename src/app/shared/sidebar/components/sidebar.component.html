@@ -1,6 +1,4 @@
-<!-- SIDEBAR DESKTOP (visible en pantallas grandes) -->
 <div class="sidebar desktop-sidebar">
-  <!-- Sección de Categorías -->
   <div class="sidebar-section">
     <h3 class="section-title">Categorías</h3>
     <div *ngIf="loading" class="loading-state">
@@ -28,7 +26,6 @@
     </div>
   </div>
 
-  <!-- Sección de Fabricantes -->
   <div class="sidebar-section">
     <h3 class="section-title">Fabricantes</h3>
     <div *ngIf="manufacturers.length === 0" class="loading-state">
@@ -47,7 +44,6 @@
     </div>
   </div>
 
-  <!-- Sección de Información -->
   <div class="sidebar-section">
     <h3 class="section-title">Información</h3>
     <div class="info-list">
@@ -61,11 +57,9 @@
   </div>
 </div>
 
-<!-- SIDEBAR MÓVIL (DRAWER) -->
 <div class="mobile-sidebar-overlay" *ngIf="isSidebarOpen" (click)="closeSidebar()">
   <div class="mobile-sidebar" (click)="$event.stopPropagation()">
     <button class="close-btn" (click)="closeSidebar()">×</button>
-    <!-- Sección de Categorías -->
     <div class="sidebar-section">
       <h3 class="section-title">Categorías</h3>
       <div *ngIf="loading" class="loading-state">
@@ -93,7 +87,6 @@
       </div>
     </div>
 
-    <!-- Sección de Fabricantes -->
     <div class="sidebar-section">
       <h3 class="section-title">Fabricantes</h3>
       <div *ngIf="manufacturers.length === 0" class="loading-state">
@@ -112,7 +105,6 @@
       </div>
     </div>
 
-    <!-- Sección de Información -->
     <div class="sidebar-section">
       <h3 class="section-title">Información</h3>
       <div class="info-list">
@@ -127,13 +119,11 @@
   </div>
 </div>
 
-<!-- Modal para Términos y Condiciones -->
 <app-terms-modal
   [isOpen]="isTermsModalOpen"
   (closeModal)="closeTermsModal()">
 </app-terms-modal>
 
-<!-- Modal para Sobre Nosotros -->
 <app-about-us-modal
   [isOpen]="isAboutUsOpen"
   (closeModal)="closeAboutUs()">

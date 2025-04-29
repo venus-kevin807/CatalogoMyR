@@ -2,13 +2,13 @@ export interface Product {
   id_repuesto: number;
   str_referencia: string;
   nombre: string;
-  imagen_url?: string ; // Base64 encoded image
+  imagen_url?: string ;
   descripcion?: string;
   precio: number;
   stock: number;
-  id_proveedor?: number | null; // Ahora es opcional
+  id_proveedor?: number | null;
   id_categoria: number;
-  id_subcategoria?: number | null; // Nuevo campo
+  id_subcategoria?: number | null;
   id_fabricante: number;
   categoria_nombre?: string;
   fabricante_nombre?: string;

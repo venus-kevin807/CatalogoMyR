@@ -18,7 +18,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      timeOut: 5000,  // Duración en milisegundos (5 segundos en este ejemplo)
+      timeOut: 5000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true
     }),

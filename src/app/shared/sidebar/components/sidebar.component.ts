@@ -10,7 +10,7 @@ import { Manufacturer } from '../../models/manufacturer.model';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit, OnDestroy {
-  isSidebarOpen: boolean = false; // Estado del drawer móvil
+  isSidebarOpen: boolean = false;
   loading: boolean = false;
   error: string = '';
 
@@ -19,19 +19,15 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   private sidebarSub: Subscription = new Subscription();
 
-  // Variables para modales (ejemplo)
   isTermsModalOpen: boolean = false;
   isAboutUsOpen: boolean = false;
 
   constructor(private sidebarService: SidebarService) {}
 
   ngOnInit(): void {
-    // Suscribirse al estado del sidebar móvil
     this.sidebarSub = this.sidebarService.sidebarOpen$.subscribe(open => {
       this.isSidebarOpen = open;
     });
-
-    // Cargar datos
     this.loadCategories();
     this.loadManufacturers();
   }
@@ -65,15 +61,13 @@ export class SidebarComponent implements OnInit, OnDestroy {
     });
   }
 
-  // Alterna la visualización de subcategorías
   toggleSubcategories(category: any): void {
     category.showSubcategories = !category.showSubcategories;
   }
 
-  // Selecciona una subcategoría y cierra el drawer en móvil
   selectSubcategory(categoryId: number, subcategoryId: number, subcategoryName: string): void {
     this.sidebarService.selectSubcategory(categoryId, subcategoryId, subcategoryName);
-    this.sidebarService.toggleSidebar(false); // Cierra para móviles
+    this.sidebarService.toggleSidebar(false);
   }
 
   clearFilters(): void {
@@ -100,8 +94,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
   closeAboutUs(): void {
     this.isAboutUsOpen = false;
   }
-
-  // Cierra el drawer móvil
   closeSidebar(): void {
     this.sidebarService.toggleSidebar(false);
   }

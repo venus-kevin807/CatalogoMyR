@@ -14,13 +14,10 @@ export interface CartItem {
 export class CartService {
   private cartItemsSubject: BehaviorSubject<CartItem[]> = new BehaviorSubject<CartItem[]>([]);
   public cartItems$: Observable<CartItem[]> = this.cartItemsSubject.asObservable();
-
-  // BehaviorSubject para el contador del carrito
   private cartCountSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public cartCount$: Observable<number> = this.cartCountSubject.asObservable();
 
   constructor(private toastr: ToastrService) {
-    // Cargar carrito desde localStorage al iniciar
     this.loadCartFromStorage();
   }
 
@@ -47,20 +44,16 @@ export class CartService {
     const existingItemIndex = currentItems.findIndex(item => item.product.id_repuesto === product.id_repuesto);
 
     if (existingItemIndex !== -1) {
-      // El producto ya está en el carrito, incrementar cantidad
       const updatedItems = [...currentItems];
       updatedItems[existingItemIndex].quantity += 1;
       this.cartItemsSubject.next(updatedItems);
     } else {
-      // Agregar nuevo item al carrito
       const updatedItems = [...currentItems, { product, quantity: 1 }];
       this.cartItemsSubject.next(updatedItems);
     }
 
     this.updateCartCount();
     this.saveCartToStorage();
-
-    // Usar Toastr para mostrar la notificación
     this.toastr.success(`${product.nombre} agregado al carrito`, 'Producto agregado');
   }
 
