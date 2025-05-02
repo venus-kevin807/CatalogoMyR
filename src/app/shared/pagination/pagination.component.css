@@ -1,10 +1,19 @@
 /* pagination.component.css */
 .pagination-container {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1rem 0;
-  gap: 0.5rem;
+  background-color: white; /* Fondo para que no se mezcle con otros elementos */
+  padding: 0.5rem 1rem;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  width: max-content;
+  border-top: 1px solid #ddd;
+  border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .pagination-btn {

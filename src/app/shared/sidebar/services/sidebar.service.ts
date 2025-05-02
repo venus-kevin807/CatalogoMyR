@@ -10,7 +10,7 @@ import { Manufacturer, ManufacturersResponse } from '../../models/manufacturer.m
   providedIn: 'root'
 })
 export class SidebarService {
-  private apiUrl = 'http://localhost:8080/repuestos-api';
+  private apiUrl = 'https://montacargasyrepuestossas.com/api';
 
   private sidebarOpenSource = new BehaviorSubject<boolean>(false);
   sidebarOpen$ = this.sidebarOpenSource.asObservable();

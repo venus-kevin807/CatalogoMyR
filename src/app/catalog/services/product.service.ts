@@ -9,7 +9,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = 'http://localhost:8080/repuestos-api/repuestos.php';
+  private apiUrl = 'https://montacargasyrepuestossas.com/api/repuestos.php';
   public defaultImage = 'assets/images/default-repuesto.png';
 
   constructor(private http: HttpClient, private sanitizer: DomSanitizer) {}
@@ -69,7 +69,7 @@ getProducts(filters: {
 
 private processProduct(product: any): Product {
     if (product.id_repuesto) {
-        product.imagen_url = `http://localhost:8080/repuestos-api/get_image.php?id=${product.id_repuesto}`;
+        product.imagen_url = `https://montacargasyrepuestossas.com/api/get_image.php?id=${product.id_repuesto}`;
     } else {
         product.imagen_url = this.defaultImage;
     }
