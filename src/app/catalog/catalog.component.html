@@ -57,12 +57,12 @@
       </button>
     </div>
 
-    <app-pagination
-    [totalItems]="totalItems"
-    [itemsPerPage]="itemsPerPage"
-    [currentPage]="currentPage"
-    (pageChange)="onPageChange($event)"
-    *ngIf="totalItems > itemsPerPage">
-  </app-pagination>
   </div>
+  <app-pagination
+  [totalItems]="totalItems"
+  [itemsPerPage]="itemsPerPage"
+  [currentPage]="currentPage"
+  (pageChange)="onPageChange($event)"
+  *ngIf="totalItems > itemsPerPage">
+</app-pagination>
 </div>

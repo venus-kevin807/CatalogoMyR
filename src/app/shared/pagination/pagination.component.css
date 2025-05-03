@@ -1,21 +1,11 @@
 /* pagination.component.css */
 .pagination-container {
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white; /* Fondo para que no se mezcle con otros elementos */
-  padding: 0.5rem 1rem;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-  width: max-content;
-  border-top: 1px solid #ddd;
-  border-radius: 0.5rem 0.5rem 0 0;
+  margin: 2rem auto 0 auto; /* margen superior para separarla del grid */
+  gap: 0.5rem;
 }
-
 .pagination-btn {
   padding: 0.5rem 0.8rem;
   border: 1px solid #dee2e6;
