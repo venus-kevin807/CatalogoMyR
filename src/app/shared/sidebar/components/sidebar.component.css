@@ -86,6 +86,7 @@
 }
 
 /* Transición para subcategorías */
+/* Transición para subcategorías con scroll */
 .subcategory-list {
   max-height: 0;
   overflow: hidden;
@@ -93,9 +94,69 @@
 }
 
 .subcategory-list.show {
-  max-height: 500px;
+  max-height: 300px; /* Altura máxima antes de mostrar scroll */
+  overflow-y: auto; /* Habilita scroll vertical */
+
+  /* Estilos para el scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #f7941d transparent;
 }
 
+/* Personalización del scrollbar para navegadores webkit */
+.subcategory-list.show::-webkit-scrollbar {
+  width: 6px;
+}
+
+.subcategory-list.show::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.subcategory-list.show::-webkit-scrollbar-thumb {
+  background-color: #f7941d;
+  border-radius: 3px;
+}
+
+.subcategory-list.show::-webkit-scrollbar-thumb:hover {
+  background-color: #e0a050;
+}
+
+/* Alternativa: Si prefieres una altura más dinámica basada en viewport */
+@media screen and (min-height: 600px) {
+  .subcategory-list.show {
+    max-height: 40vh; /* 40% de la altura de la ventana */
+  }
+}
+
+@media screen and (max-height: 599px) {
+  .subcategory-list.show {
+    max-height: 200px; /* Altura menor para pantallas pequeñas */
+  }
+}
+
+/* Para mobile sidebar también */
+.mobile-sidebar .subcategory-list.show {
+  max-height: 250px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #f7941d transparent;
+}
+
+.mobile-sidebar .subcategory-list.show::-webkit-scrollbar {
+  width: 6px;
+}
+
+.mobile-sidebar .subcategory-list.show::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.mobile-sidebar .subcategory-list.show::-webkit-scrollbar-thumb {
+  background-color: #f7941d;
+  border-radius: 3px;
+}
+
+.mobile-sidebar .subcategory-list.show::-webkit-scrollbar-thumb:hover {
+  background-color: #e0a050;
+}
 .subcategory-item {
   padding: 8px 15px 8px 30px;
   border-top: 1px solid #f0f0f0;

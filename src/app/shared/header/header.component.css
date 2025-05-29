@@ -309,29 +309,30 @@ h1, h2, h3, h4, p {
 
 /* Estilos responsivos */
 @media (max-width: 768px) {
-  .nav-list {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .logo-container {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .icons-container {
-    width: 100%;
-    justify-content: space-between;
-    margin-top: 15px;
-  }
-
-  .nav-list a {
-    padding: 8px 15px;
-    font-size: 0.85rem;
-  }
-
   .cart-dropdown {
-    right: -100px; /* Ajuste para móviles */
-    width: 300px;
+    position: fixed !important;
+    top: 60px; /* Debajo del header */
+    left: 0;
+    right: 0;
+    width: 100% !important;
+    height: auto;
+    max-height: 80vh;
+    overflow-y: auto;
+    border-radius: 0;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .cart-header h3 {
+    font-size: 16px;
+  }
+
+  .item-details h4 {
+    font-size: 13px;
+  }
+
+  .btn-checkout, .btn-clear {
+    font-size: 14px;
+    padding: 10px;
   }
 }
